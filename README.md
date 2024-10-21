@@ -10,7 +10,7 @@ FishAlert is a dual-purpose project designed to assist elderly individuals in id
 5. Website Blocker: Block specific websites and use a password to prevent any changes to locked websites
 
 **How It Works**
-When voice is inputted, the speech recognition engine trancscibes the conversation. Then, the system analyzes the phone number and conversational cues to detect for potential scams. The AI then tells you what parts of the sentence spoken are suspicious, and has a text to speech engine read it aloud, helping the user manage the call safely. 
+Firstly, the phone numebr is scammed using an API to extract details like timezona location and what carrier service the phone number is from. Then, when voice is inputted, the speech recognition engine trancscibes the conversation. The transcripted text is then fed into an LLM which analyzes the conversation for specific phrases or keywords that are often used by scammers, and tells you which phrases those are. Then, the AI has a text to speech engine interact with the scammer, both leading the conversation, and keeping you safe from any scams that clone your real voice
 For the website blocker, by inputting the URL and your selected password, the program bans that website on your brower by removing all accessible information, and all buttons from it.
 
 
@@ -32,4 +32,17 @@ Input your API keys
 
 Run the Application:   
 `python app.py`
+
+# Pictures
+
+**Homepage:**
+![homepage](https://github.com/user-attachments/assets/dbc6c6cd-5bee-4a48-8d36-1c111f231af0)
+
+**Email & Text Checker**
+![text checker](https://github.com/user-attachments/assets/623ee37d-4384-45e6-b06c-c6645721311a)
+
+**Contact**
+![contact](https://github.com/user-attachments/assets/291904b8-c3de-4a4f-b500-e1d0eab7508c)
+
+
 
