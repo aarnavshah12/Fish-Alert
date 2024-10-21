@@ -9,23 +9,40 @@
         const startRecording = () => {
             const recognition = new (window.SpeechRecognition || window.webkitSpeechRecognition)();
             recognition.lang = 'en-US';
+            recognition.interimResults = true; // Enable interim results
+
             recognition.onresult = async (event) => {
                 const transcript = event.results[0][0].transcript;
                 document.getElementById("userInput").innerText = `You said: ${transcript}`;
                 
-                const response = await fetch('/process', {
-                    method: 'POST',
-                    headers: {
-                        'Content-Type': 'application/json',
-                    },
-                    body: JSON.stringify({ text: transcript })
-                });
-                
-                const data = await response.json();
-                document.getElementById("scamAnalysis").innerText = `Scam Analysis: ${data.scam_analysis}`;
-                speak(data.rebuttal);
+                // If final result
+                if (event.results[0].isFinal) {
+                    const response = await fetch('/process', {
+                        method: 'POST',
+                        headers: {
+                            'Content-Type': 'application/json',
+                        },
+                        body: JSON.stringify({ text: transcript })
+                    });
+                    
+                    const data = await response.json();
+                    document.getElementById("scamAnalysis").innerText = `Scam Analysis: ${data.scam_analysis}`;
+                    speak(data.rebuttal);
+                }
             };
-            recognition.start();
+
+            recognition.onerror = (event) => {
+                console.error('Speech recognition error', event.error);
+                // Restart recognition on error
+                recognition.start();
+            };
+
+            recognition.onend = () => {
+                // Restart recognition when it ends
+                recognition.start();
+            };
+
+            recognition.start(); // Start recognition
         };
 
         const speak = (text) => {
@@ -82,7 +99,7 @@
         <div class="bg-white rounded-lg shadow-lg p-8 w-full max-w-lg border-4 border-blue-300">
             <h1 class="text-3xl font-bold text-blue-600 text-center mb-6 shadow-md p-2 rounded-lg bg-blue-50">Scam Detection Bot</h1>
             <button onclick="startRecording()" class="w-full bg-blue-600 text-white py-3 rounded-lg hover:bg-blue-700 transition duration-200 focus:outline-none focus:ring-4 focus:ring-blue-300 mb-4">
-                Speak Now
+                Start Continuous Listening
             </button>
             <div id="userInput" class="mt-6 p-4 border-2 border-blue-200 rounded-lg bg-blue-50 shadow-md transition duration-200 hover:shadow-lg hover:border-blue-300"></div>
             <div id="scamAnalysis" class="mt-4 p-4 border-2 border-green-200 rounded-lg bg-green-50 shadow-md transition duration-200 hover:shadow-lg hover:border-green-300"></div>
