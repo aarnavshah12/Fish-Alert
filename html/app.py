@@ -170,6 +170,22 @@ def check_scam():
     return render_template('check_scam.html', is_scam=None)
 
 # Route to process speech or text and check for scams
+def remove_emojis(text):
+    emoji_pattern = re.compile("["
+        u"\U0001F600-\U0001F64F"  # emoticons
+        u"\U0001F300-\U0001F5FF"  # symbols & pictographs
+        u"\U0001F680-\U0001F6FF"  # transport & map symbols
+        u"\U0001F700-\U0001F77F"  # alchemical symbols
+        u"\U0001F780-\U0001F7FF"  # Geometric Shapes Extended
+        u"\U0001F800-\U0001F8FF"  # Supplemental Arrows-C
+        u"\U0001F900-\U0001F9FF"  # Supplemental Symbols and Pictographs
+        u"\U0001FA00-\U0001FAFF"  # Chess Symbols
+        u"\U00002702-\U000027B0"  # Dingbats
+        u"\u2600-\u26FF"          # Miscellaneous symbols
+        u"\u2700-\u27BF"          # Dingbats
+        "]+", flags=re.UNICODE)
+    return emoji_pattern.sub(r'', text)
+
 @app.route('/process', methods=['POST'])
 def process_text():
     text = request.json.get('text')
@@ -181,7 +197,8 @@ def process_text():
             If such phrases are found, list them. If no scam phrases were detected, just say: 'No scam phrases were detected.'
         ''')
 
-        scam_analysis = response.text
+        scam_analysis = response.text.strip()
+        scam_analysis = remove_emojis(scam_analysis)  # Remove emojis
 
         # Determine the appropriate response based on scam analysis
         if "No scam phrases were detected." in scam_analysis:
@@ -193,7 +210,8 @@ def process_text():
                 Based on the input sentence: {text} and the response: '{scam_analysis}', generate a response to keep the scammer engaged without using emojis.
             ''')
 
-        rebuttal = response_ai.text
+        rebuttal = response_ai.text.strip()
+        rebuttal = remove_emojis(rebuttal)  # Remove emojis
     except Exception as e:
         return jsonify({'error': str(e)}), 500  # Handle any errors gracefully
 
