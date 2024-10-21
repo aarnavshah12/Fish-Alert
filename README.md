@@ -15,20 +15,20 @@ For the website blocker, by inputting the URL and your selected password, the pr
 
 
 **Installation:**
-Clone the Repository:
-  1. `git clone https://github.com/aarnavshah12/Fish-Alert`
-  2. `cd Fish-Alert`
+Clone the Repository:  
+`git clone https://github.com/aarnavshah12/Fish-Alert`  
+`cd Fish-Alert`
      
-Install Dependencies:
-pip install -r requirements.txt
+Install Dependencies:  
+`pip install -r requirements.txt`
 
 Setup API Keys:
 1. Google Cloud API
 2. NumVerify
 
-Input your API keys
-1. GOOGLE_API_KEY=your_google_api_key
-2. NumVerify=your_numverify_key
+Input your API keys  
+`GOOGLE_API_KEY=your_google_api_key`  
+`NumVerify=your_numverify_key`  
 
 Run the Application:   
 `python app.py`
