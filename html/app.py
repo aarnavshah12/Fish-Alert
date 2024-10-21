@@ -11,7 +11,7 @@ import requests
 app = Flask(__name__)
 
 # Configure Google Generative AI
-genai.configure(api_key='AIzaSyAwg_f0Q_dv0hRFGWowk03cgHPZlmEIQJU')
+genai.configure(api_key='API')
 generation_config = {"temperature": 0.9, "top_p": 1, "top_k": 1, "max_output_tokens": 10}
 model = genai.GenerativeModel("gemini-1.5-flash", generation_config=generation_config)
 
@@ -220,11 +220,9 @@ def process_text():
         'rebuttal': rebuttal
     })
 
-API_KEY = '302f4cbcb17ddf01e621e198d58db8b9'  # Replace this with your actual API key
-
 # Route for phone number validation
 def validate_phone_number(phone):
-    url = "https://apilayer.net/api/validate?access_key=302f4cbcb17ddf01e621e198d58db8b9"  # Replace with your actual access key
+    url = "https://apilayer.net/api/validate?access_key=API"  # Replace with your actual access key
     querystring = {"number": phone}
     response = requests.get(url, params=querystring)
     return response.json()  # Assuming the API returns a JSON response
