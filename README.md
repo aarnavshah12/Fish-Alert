@@ -8,4 +8,12 @@ Features
 3. AI-Powered Scam Detection: Identifies suspicious phrases often used by scammers and offers AI-generated rebuttals to assess the threat.
 4. Text-to-Speech Responses: After identifying potential scams, FishAlert generates a verbal response that the elderly user can use during the call.
 5. Website Blocker: Block specific websites and use a password to prevent any changes to locked websites
-6. 
+
+How It Works
+When voice is inputted, the speech recognition engine trancscibes the conversation. Then, the system analyzes the phone number and conversational cues to detect for potential scams. The AI then tells you what parts of the sentence spoken are suspicious, and has a text to speech engine read it aloud, helping the user manage the call safely. 
+For the website blocker, by inputting the URL and your selected password, the program bans that website on your brower by removing all accessible information, and all buttons from it.
+
+Installation:
+Clone the Repository:
+  git clone https://github.com/aarnavshah12/FishAlert.git
+  cd FishAlert
