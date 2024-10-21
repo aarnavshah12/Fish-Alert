@@ -15,5 +15,6 @@ For the website blocker, by inputting the URL and your selected password, the pr
 
 Installation:
 Clone the Repository:
-  git clone https://github.com/aarnavshah12/FishAlert.git
+  git clone https://github.com/aarnavshah12/FishAlert
+
   cd FishAlert
