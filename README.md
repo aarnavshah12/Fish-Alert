@@ -10,7 +10,7 @@ FishAlert is a dual-purpose project designed to assist elderly individuals in id
 5. Website Blocker: Block specific websites and use a password to prevent any changes to locked websites
 
 **How It Works**
-Firstly, the phone numebr is scammed using an API to extract details like timezona location and what carrier service the phone number is from. Then, when voice is inputted, the speech recognition engine trancscibes the conversation. The transcripted text is then fed into an LLM which analyzes the conversation for specific phrases or keywords that are often used by scammers, and tells you which phrases those are. Then, the AI has a text to speech engine interact with the scammer, both leading the conversation, and keeping you safe from any scams that clone your real voice
+Firstly, the phone numebr is scammed using an API to extract details like timezona location and what carrier service the phone number is from. Then, when voice is inputted, the speech recognition engine trancscibes the conversation. The transcripted text is then fed into an LLM which analyzes the conversation for specific phrases or keywords that are often used by scammers, and tells you which phrases those are. Then, the AI has a text to speech engine interact with the scammer, both leading the conversation, and keeping you safe from any scams that clone your real voice  
 For the website blocker, by inputting the URL and your selected password, the program bans that website on your brower by removing all accessible information, and all buttons from it.
 
 
