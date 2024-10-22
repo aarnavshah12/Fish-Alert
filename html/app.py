@@ -11,7 +11,7 @@ import requests
 app = Flask(__name__)
 
 # Configure Google Generative AI
-genai.configure(api_key='API')
+genai.configure(api_key='AIzaSyAwg_f0Q_dv0hRFGWowk03cgHPZlmEIQJU')
 generation_config = {"temperature": 0.9, "top_p": 1, "top_k": 1, "max_output_tokens": 10}
 model = genai.GenerativeModel("gemini-1.5-flash", generation_config=generation_config)
 
@@ -64,17 +64,26 @@ def home():
 def index():
     return render_template('index.html')
 
+def load_banned_sites():
+    with open('banned.json', 'r') as f:
+        return json.load(f)
+
 @app.route('/website_safety', methods=['GET', 'POST'])
 def website_safety():
     if request.method == 'POST':
         websitetoopen = request.form.get('website_url')
-        blist = load_banned_sites()
+        blist = load_banned_sites()  # Load banned websites from JSON
+        
+        # Check if the website entered is in the banned list
         if websitetoopen in blist:
-            return "Warning: User attempted to access a blocked website.", 403
+            # Block access if website is banned
+            return "Warning: Access to this website is blocked.", 403
         else:
-            return render_template('display_website.html', website=websitetoopen)
+            # Allow access to the unbanned website
+            return redirect(f"http://{websitetoopen}")
+    
+    # If it's a GET request, render the website safety page with the banned sites list
     return render_template('website_safety.html', banned_sites=load_banned_sites())
-
 @app.route('/filter_settings', methods=['GET', 'POST'])
 def filter_settings():
     password_correct = False
@@ -220,9 +229,11 @@ def process_text():
         'rebuttal': rebuttal
     })
 
+API_KEY = '302f4cbcb17ddf01e621e198d58db8b9'  # Replace this with your actual API key
+
 # Route for phone number validation
 def validate_phone_number(phone):
-    url = "https://apilayer.net/api/validate?access_key=API"  # Replace with your actual access key
+    url = "https://apilayer.net/api/validate?access_key=302f4cbcb17ddf01e621e198d58db8b9"  # Replace with your actual access key
     querystring = {"number": phone}
     response = requests.get(url, params=querystring)
     return response.json()  # Assuming the API returns a JSON response
