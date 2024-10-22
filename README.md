@@ -1,3 +1,7 @@
+
+
+https://github.com/user-attachments/assets/38e6cdfe-d690-45df-8ab4-cc8558b8799d
+
 # Fish-Alert  
 
 FishAlert is a dual-purpose project designed to assist elderly individuals in identifying phone scammers and provide interactive learning experiences for kids. The system employs speech-to-text, phone number analysis, and AI-based scam detection techniques, along with text-to-speech functionality. 
