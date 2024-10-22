@@ -20,7 +20,7 @@ Clone the Repository:
 `cd Fish-Alert`
      
 Install Dependencies:  
-`pip install -r requirements.txt`
+`pip install pyttsx3 phonenumbers google-cloud-speech google-generativeai`
 
 Setup API Keys:
 1. Google Cloud API
