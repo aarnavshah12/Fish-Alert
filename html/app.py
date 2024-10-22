@@ -82,7 +82,7 @@ def website_safety():
             # Allow access to the unbanned website
             return redirect(f"http://{websitetoopen}")
     
-    # If it's a GET request, render the website safety page with the banned sites list
+    
     return render_template('website_safety.html', banned_sites=load_banned_sites())
 @app.route('/filter_settings', methods=['GET', 'POST'])
 def filter_settings():
@@ -90,11 +90,11 @@ def filter_settings():
     if request.method == 'POST':
         password = request.form.get('password')
         if password == '123':
-            password_correct = True  # Correct password to access filter settings
+            password_correct = True  
             if request.form.get('new_site'):
-                return add_site()  # Handle adding site directly
+                return add_site()  
             elif request.form.get('site_to_remove'):
-                return remove_site()  # Handle removing site directly
+                return remove_site()  
     return render_template('filter_settings.html', 
                            banned_sites=load_banned_sites(), 
                            password_correct=password_correct)
@@ -132,9 +132,9 @@ def contact():
     return render_template('contact.html')
 
 def send_email(name, email, message):
-    sender_email = "your_email@gmail.com"  # Replace with your email
-    app_password = "your_app_password"  # Replace with your app password
-    receiver_email = "your_email@gmail.com"  # Replace with the email that receives the message
+    sender_email = "your_email@gmail.com"  
+    app_password = "your_app_password"  
+    receiver_email = "your_email@gmail.com"  
     
     msg = MIMEMultipart()
     msg['From'] = sender_email
@@ -151,7 +151,7 @@ def send_email(name, email, message):
 
 @app.route('/download/<filename>')
 def download_file(filename):
-    # Ensure the filename is valid to prevent directory traversal attacks
+    
     safe_filenames = ['main.py', 'banned.json']
     if filename not in safe_filenames:
         return "File not found.", 404
@@ -159,7 +159,7 @@ def download_file(filename):
 
 @app.route('/thank_you')
 def thank_you():
-    return render_template('thank_you.html')  # Create a new thank you page
+    return render_template('thank_you.html')  
 
 @app.route('/about')
 def about():
@@ -167,14 +167,14 @@ def about():
 
 @app.route('/quiz')
 def quiz():
-    return render_template('quiz.html')  # Ensure quiz.html exists in your templates folder
+    return render_template('quiz.html') 
 
 # New route for scam check
 @app.route('/check_scam', methods=['GET', 'POST'])
 def check_scam():
     if request.method == 'POST':
         message = request.form.get('message')
-        is_scam = detect_scam(message)  # Assuming detect_scam is a function that checks for scam messages
+        is_scam = detect_scam(message)  
         return render_template('check_scam.html', is_scam=is_scam, message=message)
     return render_template('check_scam.html', is_scam=None)
 
