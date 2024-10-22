@@ -132,9 +132,9 @@ def contact():
     return render_template('contact.html')
 
 def send_email(name, email, message):
-    sender_email = "your_email@gmail.com"  
-    app_password = "your_app_password"  
-    receiver_email = "your_email@gmail.com"  
+    sender_email = "kapilayuvaansh@gmail.com"  
+    app_password = "vbgy yfhv zxcc pylr"  
+    receiver_email = "kapilayuvaansh@gmail.com"  
     
     msg = MIMEMultipart()
     msg['From'] = sender_email
