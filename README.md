@@ -2,16 +2,21 @@
 
 FishAlert is a dual-purpose project designed to assist elderly individuals in identifying phone scammers and provide interactive learning experiences for kids. The system employs speech-to-text, phone number analysis, and AI-based scam detection techniques, along with text-to-speech functionality. 
 
+**Demo Video:**
+https://youtu.be/VTEEbKnR8jM
+
 **Features:**  
 1. Speech-to-Text: Converts live phone conversations to text using real-time speech recognition.
 2. Phone Number Analysis: Extracts details like timezone, location, and carrier from the caller's phone number to validate the source.
 3. AI-Powered Scam Detection: Identifies suspicious phrases often used by scammers and offers AI-generated rebuttals to assess the threat.
 4. Text-to-Speech Responses: After identifying potential scams, FishAlert generates a verbal response that the elderly user can use during the call.
 5. Website Blocker: Block specific websites and use a password to prevent any changes to locked websites
+6. Cyber Security Education: Educating users about Cyber Security and Scamer Identification.
 
 **How It Works:**  
-Firstly, the phone number is scammed using an API to extract details like timezona location and what carrier service the phone number is from. Then, when the voice is inputted, the speech recognition engine transcribes the conversation. The transcripted text is then fed into an LLM which analyzes the conversation for specific phrases or keywords that are often used by scammers and tells you which phrases those are. Then, the AI has a text-to-speech engine interact with the scammer, both leading the conversation and keeping you safe from any scams that clone your real voice  
-For the website blocker, by inputting the URL and your selected password, the program bans that website on your browser by removing all accessible information, and all buttons from it. The website blocker uses a blocked list which is a JSON file and everything else uses tailwing css for asthetics. 
+First, the phone number is analyzed using an API to extract key details, such as the timezone, location, and carrier information. When the voice is detected, a speech recognition engine transcribes the conversation. The transcribed text is then processed by a large language model (LLM), which analyzes the conversation for specific phrases or keywords commonly used by scammers and highlights them for you. To protect you further, an AI-driven text-to-speech engine engages with the scammer, guiding the conversation and keeping you safe from scams that may attempt to clone your voice.
+
+For the website blocker, simply input the URL and your selected password. The program then blocks access to the website on your browser by removing all visible content and disabling all interactive buttons. The website blocker uses a blocked list stored in a JSON file, while the overall design leverages Tailwind CSS for an aesthetic and user-friendly interface.
 
 
 **Installation:**  
@@ -23,7 +28,7 @@ Install Dependencies:
 `pip install pyttsx3 phonenumbers google-cloud-speech google-generativeai requests threading`
 
 Setup API Keys:
-1. Google Cloud API
+1. Google Gemini API
 2. NumVerify
 
 Input your API keys  
